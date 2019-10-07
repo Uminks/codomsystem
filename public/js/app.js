@@ -49356,11 +49356,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-/*
-const app = new Vue({
-   el: '#app',
-}); */
-// CUSTOM JS
+var app = new Vue({
+  el: '#app'
+}); // CUSTOM JS
 
 if ($('.login-container')[0]) {
   var body = $('body');
@@ -49503,8 +49501,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\codomsystem\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\codomsystem\resources\sass\global.scss */"./resources/sass/global.scss");
+__webpack_require__(/*! C:\laragon\www\codom\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\codom\resources\sass\global.scss */"./resources/sass/global.scss");
 
 
 /***/ })
