@@ -29,10 +29,10 @@ class AddPeopleCondominiumEstate extends Migration
     public function down()
     {
        Schema::table('estate', function (Blueprint $table) {
+            $table->dropForeign('estate_id_people_foreign');
+            $table->dropForeign('estate_id_condominium_foreign');
             $table->dropColumn('id_people');
             $table->dropColumn('id_condominium');
-            $table->dropForeign('id_people');
-            $table->dropForeign('id_condominium');
        });
     }
 }

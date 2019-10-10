@@ -29,10 +29,10 @@ class AddExpensesAliquot extends Migration
     public function down()
     {
         Schema::table('aliquot', function (Blueprint $table) {
+            $table->dropForeign('aliquot_id_expenses_foreign');
+            $table->dropForeign('aliquot_id_estate_foreign');
             $table->dropColumn('id_expenses');
             $table->dropColumn('id_estate');
-            $table->dropForeign('id_expenses');
-            $table->dropForeign('idid_estate_expenses');
         });
         
     }

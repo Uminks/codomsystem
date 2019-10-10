@@ -22,8 +22,8 @@ class AddUserCondominium extends Migration
     public function down()
     {
         Schema::table('condominium', function (Blueprint $table) {
+            $table->dropForeign('condominium_id_user_foreign');
             $table->dropColumn('id_user');
-            $table->dropForeign('id_user');
         });
     }
 }
