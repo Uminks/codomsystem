@@ -21,6 +21,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('codom-register', require('./components/CodomRegisterComponent.vue').default);
+Vue.component('expense-register', require('./components/ExpensesRegisterComponent.vue').default);
+Vue.component('payment-register', require('./components/PaymentRegisterComponent.vue').default);
+Vue.component('charge-register', require('./components/ChargeRegisterComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

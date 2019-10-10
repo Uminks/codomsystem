@@ -20,7 +20,10 @@
 @section('content')
 
         <div class="container">
-            <codom-register></codom-register>
+            <codom-register></codom-register> 
+            <!-- <expense-register></expense-register> -->
+            <!-- <payment-register></payment-register> -->
+            <!-- <charge-register></charge-register> -->
         </div>
 
 @endsection
