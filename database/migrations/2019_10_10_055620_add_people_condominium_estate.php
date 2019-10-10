@@ -29,8 +29,8 @@ class AddPeopleCondominiumEstate extends Migration
     public function down()
     {
        Schema::table('estate', function (Blueprint $table) {
-            $table->dropColumn;('id_people');
-            $table->dropColumn;('id_condominium');
+            $table->dropColumn('id_people');
+            $table->dropColumn('id_condominium');
        });
     }
 }
