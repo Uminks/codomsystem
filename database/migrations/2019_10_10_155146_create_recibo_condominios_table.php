@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGastosTable extends Migration
+class CreateReciboCondominiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateGastosTable extends Migration
      */
     public function up()
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('recibo_condominios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date');
-            $table->string('type');
-            $table->double('value');
+            $table->float('monto');
+
+            $table->unsignedBigInteger('id_condominio');
+
             $table->timestamps();
+
+            $table->foreign('id_condominio')->references('id')->on('condominios');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateGastosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('recibo_condominios');
     }
 }

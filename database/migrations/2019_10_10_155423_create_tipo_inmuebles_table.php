@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlicoutaTable extends Migration
+class CreateTipoInmueblesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateAlicoutaTable extends Migration
      */
     public function up()
     {
-        Schema::create('aliquot', function (Blueprint $table) {
+        Schema::create('tipo_inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('value');
+
+            $table->string('descripcion');
+            $table->float('alicuota');
+
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,6 @@ class CreateAlicoutaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aliquot');
+        Schema::dropIfExists('tipo_inmuebles');
     }
 }

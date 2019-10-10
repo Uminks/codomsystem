@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCondominioTable extends Migration
+class CreateProveedoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateCondominioTable extends Migration
      */
     public function up()
     {
-        Schema::create('condominium', function (Blueprint $table) {
+        Schema::create('proveedores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('info');
+
+            $table->string('description');
+            $table->float('monto');
+
+            $table->timestamps();
         });
     }
 
@@ -27,6 +30,6 @@ class CreateCondominioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('condominium');
+        Schema::dropIfExists('proveedores');
     }
 }

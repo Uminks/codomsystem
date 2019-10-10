@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMontoReservaTable extends Migration
+class CreateDetalleReciboInmueblesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateMontoReservaTable extends Migration
      */
     public function up()
     {
-        Schema::create('reserve_amount', function (Blueprint $table) {
+        Schema::create('detalle_recibo_inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('value');
+            
+            $table->float('monto');
+            $table->unsignedBigInteger('id_recibo_inmueble');
+            
             $table->timestamps();
+
+            $table->foreign('id_recibo_inmueble')->references('id')->on('recibo_inmuebles');
         });
     }
 
@@ -27,6 +32,6 @@ class CreateMontoReservaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserve_amount');
+        Schema::dropIfExists('detalle_recibo_inmuebles');
     }
 }

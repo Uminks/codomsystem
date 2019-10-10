@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInmueblesTable extends Migration
+class CreateReciboInmueblesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateInmueblesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estate', function (Blueprint $table) {
+        Schema::create('recibo_inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('type');
-            $table->double('aliquot');
+
+            $table->unsignedBigInteger('id_inmueble');
+            $table->float('monto');
+
+            $table->timestamps();
+
+            $table->foreign('id_inmueble')->references('id')->on('inmuebles');
         });
     }
 
@@ -28,6 +32,6 @@ class CreateInmueblesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estate');
+        Schema::dropIfExists('recibo_inmuebles');
     }
 }
