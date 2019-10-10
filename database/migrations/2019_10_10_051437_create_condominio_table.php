@@ -17,7 +17,6 @@ class CreateCondominioTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('info');
-            $table->integer('id_user');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateCondominioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('condominio');
+        Schema::dropIfExists('condominium');
     }
 }

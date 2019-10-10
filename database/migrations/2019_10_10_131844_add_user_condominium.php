@@ -4,16 +4,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserUsers extends Migration
+class AddUserCondominium extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+      public function up()
     {
         Schema::table('condominium', function (Blueprint $table) {
+            $table->integer('id_user');
             $table->foreign('id_user')->references('id')->on('users');
         });
     }
@@ -26,7 +22,7 @@ class AddUserUsers extends Migration
     public function down()
     {
         Schema::table('condominium', function (Blueprint $table) {
-            $table->foreign('id_user');
+            $table->dropColumn('id_user');
         });
     }
 }

@@ -26,7 +26,7 @@ class AddExpensesAliquot extends Migration
      */
     public function down()
     {
-        Schema::table('estate', function (Blueprint $table) {
+        Schema::table('aliquot', function (Blueprint $table) {
             $table->dropColumn('id_expenses');
             $table->dropColumn('id_estate');
         });

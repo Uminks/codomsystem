@@ -29,6 +29,6 @@ class CreateGastosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gastos');
+        Schema::dropIfExists('expenses');
     }
 }

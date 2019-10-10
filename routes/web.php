@@ -12,7 +12,11 @@
 */
 
 Route::get('/', 'RenderController@getLogin');
+
 Route::get('/preview', 'RenderController@generatePDF');
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+

@@ -27,6 +27,6 @@ class CreateMontoReservaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monto_reserva');
+        Schema::dropIfExists('reserve_amount');
     }
 }

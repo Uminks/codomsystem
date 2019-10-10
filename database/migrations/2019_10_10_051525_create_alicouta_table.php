@@ -28,6 +28,6 @@ class CreateAlicoutaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alicouta');
+        Schema::dropIfExists('aliquot');
     }
 }
