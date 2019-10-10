@@ -14,6 +14,10 @@ class RenderController extends Controller
         return view('login');
     }
 
+    public function getAdmin() {
+        return view('admin');
+    }
+
     public function generatePDF() {
         $data = ['title' => 'Welcome to HDTuto.com'];
         $pdf = PDF::loadView('preview', $data);

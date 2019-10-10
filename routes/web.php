@@ -13,6 +13,8 @@
 
 Route::get('/', 'RenderController@getLogin');
 
+Route::get('/admin', 'RenderController@getAdmin');
+
 Route::get('/preview', 'RenderController@generatePDF');
 
 Route::get('/home', 'HomeController@index')->name('home');

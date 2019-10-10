@@ -10769,3 +10769,13 @@ body {
   font-style: italic;
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: #823030;
+  border-color: #823030;
+}
+
+.btn-danger:hover {
+  opacity: 0.85;
+}
+

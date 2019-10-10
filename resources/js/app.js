@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('codom-register', require('./components/CodomRegisterComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,16 +28,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- 
+
 const app = new Vue({
     el: '#app',
-}); 
+});
 
 
 // CUSTOM JS
-if($('.login-container')[0]){
+if ($('.login-container')[0]) {
     let body = $('body');
     body.css("background-color", "#485563");
     body.css("background-color", "-webkit-linear-gradient(to left, #29323c, #485563)");
-    body.css("background-color", "linear-gradient(to left, #29323c, #485563)"); 
+    body.css("background-color", "linear-gradient(to left, #29323c, #485563)");
 }
