@@ -9,7 +9,7 @@ class AddUserCondominium extends Migration
       public function up()
     {
         Schema::table('condominium', function (Blueprint $table) {
-            $table->integer('id_user');
+            $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
         });
     }
@@ -23,6 +23,7 @@ class AddUserCondominium extends Migration
     {
         Schema::table('condominium', function (Blueprint $table) {
             $table->dropColumn('id_user');
+            $table->dropForeign('id_user');
         });
     }
 }

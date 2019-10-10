@@ -14,8 +14,8 @@ class AddPeopleCondominiumEstate extends Migration
     public function up()
     {
        Schema::table('estate', function (Blueprint $table) {
-            $table->integer('id_people');
-            $table->integer('id_condominium');
+            $table->unsignedBigInteger('id_people');
+            $table->unsignedBigInteger('id_condominium');
             $table->foreign('id_people')->references('id')->on('people')->onDelete('cascade');
             $table->foreign('id_condominium')->references('id')->on('condominium')->onDelete('cascade');
        });
@@ -31,6 +31,8 @@ class AddPeopleCondominiumEstate extends Migration
        Schema::table('estate', function (Blueprint $table) {
             $table->dropColumn('id_people');
             $table->dropColumn('id_condominium');
+            $table->dropForeign('id_people');
+            $table->dropForeign('id_condominium');
        });
     }
 }

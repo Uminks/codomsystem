@@ -16,8 +16,6 @@ class CreateAlicoutaTable extends Migration
         Schema::create('aliquot', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('value');
-            $table->integer('id_expenses');
-            $table->integer('id_estate');
         });
     }
 
