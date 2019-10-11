@@ -1993,6 +1993,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_picture_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-picture-input */ "./node_modules/vue-picture-input/PictureInput.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2100,6 +2109,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     PictureInput: vue_picture_input__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2108,13 +2118,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       codom_name: null,
       reserve_amount: null,
+      providers: [{
+        name: null
+      }],
       estates: [{
         title: "",
         percentage: "",
-        image: "",
-        providers: [{
-          name: ""
-        }]
+        image: ""
       }]
     };
   },
@@ -2165,15 +2175,21 @@ __webpack_require__.r(__webpack_exports__);
       });
       return total;
     },
-    AddProvider: function AddProvider(index) {
-      this.estates[index].providers.push({
+    AddProvider: function AddProvider() {
+      this.providers.push({
         name: ""
       });
     },
-    DeleteProvider: function DeleteProvider(index) {
-      this.estates[index].providers.pop({
+    DeleteProvider: function DeleteProvider() {
+      this.providers.pop({
         name: ""
       });
+    },
+    registerCodom: function registerCodom() {
+      var url = "";
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url).then(function (response) {
+        console.log('success');
+      })["catch"](function (err) {});
     }
   }
 });
@@ -7775,7 +7791,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".estates-container[data-v-01e99de2] {\n  width: 50vw;\n  margin: auto;\n  padding: 5px;\n}\n.estates-container .input-div[data-v-01e99de2] {\n  width: 100%;\n}\n.estates-container__estates[data-v-01e99de2] {\n  margin-bottom: 8px;\n  text-align: center;\n  border: none;\n  display: flex;\n}\n.estates-container__estates input[data-v-01e99de2] {\n  margin-right: 10px;\n  margin-top: 1.5em;\n  margin-bottom: 1.5em;\n}\n.estates-container .register-codom[data-v-01e99de2] {\n  margin: 8px 0;\n}\n.estates-container .per_input[data-v-01e99de2] {\n  display: flex;\n  font-size: 20px;\n}\n.estates-container .per_input input[data-v-01e99de2] {\n  width: 60px !important;\n  margin-right: 10px;\n}\n.estates-container .group-buttons[data-v-01e99de2] {\n  display: flex;\n  justify-content: center;\n}\n.estates-container .group-buttons button[data-v-01e99de2] {\n  margin: 10px 10px;\n}", ""]);
+exports.push([module.i, ".estates-container[data-v-01e99de2] {\n  width: 50vw;\n  margin: auto;\n  padding: 5px;\n}\n.estates-container .input-div[data-v-01e99de2] {\n  width: 100%;\n}\n.estates-container .input-div input[data-v-01e99de2] {\n  margin: 8px 0;\n}\n.estates-container__estates[data-v-01e99de2] {\n  margin-bottom: 8px;\n  text-align: center;\n  border: none;\n  display: flex;\n}\n.estates-container__estates input[data-v-01e99de2] {\n  margin-right: 10px;\n  margin-top: 1.5em;\n  margin-bottom: 1.5em;\n}\n.estates-container .register-codom[data-v-01e99de2] {\n  margin: 8px 0;\n}\n.estates-container .per_input[data-v-01e99de2] {\n  display: flex;\n  font-size: 20px;\n}\n.estates-container .per_input input[data-v-01e99de2] {\n  width: 60px !important;\n  margin-right: 10px;\n}\n.estates-container .group-buttons[data-v-01e99de2] {\n  display: flex;\n  justify-content: center;\n}\n.estates-container .group-buttons button[data-v-01e99de2] {\n  margin: 10px 10px;\n}", ""]);
 
 // exports
 
@@ -41039,6 +41055,70 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
+      [
+        _c("label", [_vm._v("Proveedores")]),
+        _vm._v(" "),
+        _vm._l(_vm.providers, function(provider, i) {
+          return _c("div", { key: i }, [
+            _c("div", { staticClass: "input-div" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: provider.name,
+                    expression: "provider.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { placeholder: "Nombre del proveedor" },
+                domProps: { value: provider.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(provider, "name", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "group-buttons" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.AddProvider()
+                }
+              }
+            },
+            [_vm._v("Nuevo proveedor")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  return _vm.DeleteProvider()
+                }
+              }
+            },
+            [_vm._v("Eliminar proveedor")]
+          )
+        ])
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
       { staticClass: "form-group" },
       [
         _c("label", [_vm._v("Inmuebles")]),
@@ -41119,67 +41199,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c(
-                "div",
-                [
-                  _vm._l(field.providers, function(provider, i) {
-                    return _c("div", { key: i }, [
-                      _c("div", { staticClass: "input-div" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: provider.name,
-                              expression: "provider.name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { placeholder: "Nombre del proveedor" },
-                          domProps: { value: provider.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(provider, "name", $event.target.value)
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "group-buttons" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        on: {
-                          click: function($event) {
-                            return _vm.AddProvider(index)
-                          }
-                        }
-                      },
-                      [_vm._v("Nuevo proveedor")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.DeleteProvider(index)
-                          }
-                        }
-                      },
-                      [_vm._v("Eliminar proveedor")]
-                    )
-                  ])
-                ],
-                2
-              )
+              _c("div")
             ],
             1
           )
@@ -41208,9 +41228,14 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "register-codom" }, [
                   this.codom_name && this.reserve_amount
-                    ? _c("button", { staticClass: "btn btn-success" }, [
-                        _vm._v("Registrar Condominio")
-                      ])
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: { click: _vm.registerCodom }
+                        },
+                        [_vm._v("Registrar Condominio")]
+                      )
                     : _vm._e()
                 ])
               ]

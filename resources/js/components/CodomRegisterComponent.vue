@@ -28,6 +28,21 @@
       </span>
     </div>
 
+    <div>
+      <label>Proveedores</label>
+      <div :key="i" v-for="(provider, i) in providers">
+      
+        <div class="input-div">
+          <input class="form-control" v-model="provider.name" placeholder="Nombre del proveedor" />
+        </div>
+        
+      </div>
+      <div class="group-buttons">
+        <button class="btn btn-primary" @click="AddProvider()">Nuevo proveedor</button>
+        <button class="btn btn-danger" @click="DeleteProvider()">Eliminar proveedor</button>
+      </div>
+    </div>
+
     <div class="form-group">
       <label>Inmuebles</label>
       
@@ -62,18 +77,9 @@
 
       <div>
 
-      <div :key="i" v-for="(provider, i) in field.providers">
-      
-        <div class="input-div">
-          <input class="form-control" v-model="provider.name" placeholder="Nombre del proveedor" />
-        </div>
-        
-      </div>
 
-        <div class="group-buttons">
-          <button class="btn btn-primary" @click="AddProvider(index)">Nuevo proveedor</button>
-          <button class="btn btn-danger" @click="DeleteProvider(index)">Eliminar proveedor</button>
-        </div>
+
+
 
       </div>
     
@@ -92,6 +98,7 @@
           <button
             v-if="this.codom_name && this.reserve_amount"
             class="btn btn-success"
+            @click="registerCodom"
           >Registrar Condominio</button>
         </div>
       </div>
@@ -106,6 +113,7 @@
 
 <script>
 import PictureInput from "vue-picture-input";
+import axios from 'axios';
 
 export default {
   components: {
@@ -115,7 +123,8 @@ export default {
     return {
       codom_name: null,
       reserve_amount: null,
-      estates: [{ title: "", percentage: "", image: "", providers: [{ name: "" }]  }]
+      providers: [{ name: null }],
+      estates: [{ title: "", percentage: "", image: "" }]
     };
   },
   mounted() {},
@@ -152,11 +161,21 @@ export default {
       });
       return total;
     },
-    AddProvider(index) {
-      this.estates[index].providers.push({ name: "" });
+    AddProvider() {
+      this.providers.push({ name: "" });
     },
-    DeleteProvider(index) {
-      this.estates[index].providers.pop({ name: "" });
+    DeleteProvider() {
+      this.providers.pop({ name: "" });
+    },
+    registerCodom() {
+      let url = "";
+      axios
+        .post(url)
+        .then(response => {
+          console.log('success')
+        }).catch(err => {
+
+        });
     }
   }
 };
@@ -170,6 +189,9 @@ export default {
 
   .input-div {
     width: 100%;
+    input {
+      margin: 8px 0;
+    }
   }
 
   &__estates {
