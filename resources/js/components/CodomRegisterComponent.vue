@@ -30,15 +30,20 @@
 
     <div class="form-group">
       <label>Inmuebles</label>
+      
       <div
         class="estates-container__estates form-group"
         :key="index"
         v-for="(field, index) in estates"
       >
+
+
         <div class="input-div">
           <input class="form-control" v-model="field.title" placeholder="Titulo del inmueble" />
           <input class="form-control" v-model="field.percentage" placeholder="Porcentaje alicuota" />
         </div>
+
+
         <picture-input
           ref="pictureInput"
           @change="onChange(field,index)"
@@ -55,14 +60,31 @@
         ></picture-input>
 
 
+      <div>
+
+      <div :key="i" v-for="(provider, i) in field.providers">
+      
+        <div class="input-div">
+          <input class="form-control" v-model="provider.name" placeholder="Nombre del proveedor" />
+        </div>
+        
       </div>
+
+        <div class="group-buttons">
+          <button class="btn btn-primary" @click="AddProvider(index)">Nuevo proveedor</button>
+          <button class="btn btn-danger" @click="DeleteProvider(index)">Eliminar proveedor</button>
+        </div>
+
+      </div>
+    
+    </div>
+
       <div class="group-buttons">
         <button class="btn btn-primary" @click="AddField">Nuevo inmueble</button>
         <button class="btn btn-danger" @click="DeleteField">Eliminar inmueble</button>
       </div>
-    </div>
 
-    <div>
+      
       <div v-if="(calculatePercentage() == 100)" class="alert alert-primary" role="alert">
         <span>La suma es 100</span>
 
@@ -93,7 +115,7 @@ export default {
     return {
       codom_name: null,
       reserve_amount: null,
-      estates: [{ title: "", percentage: "", image: "" }]
+      estates: [{ title: "", percentage: "", image: "", providers: [{ name: "" }]  }]
     };
   },
   mounted() {},
@@ -115,11 +137,11 @@ export default {
       });
 
       if (exist) {
-        this.estates.push({ title: "", percentage: "", image: "" });
+        this.estates.push({ title: "", percentage: "", image: "" ,  providers: [{ name: "" }] });
       }
     },
     DeleteField() {
-      this.estates.pop({ title: "", percentage: "", image: "" });
+      this.estates.pop({ title: "", percentage: "", image: "" ,  providers: [{ name: "" }] });
     },
     calculatePercentage() {
       let total = 0;
@@ -129,6 +151,12 @@ export default {
         }
       });
       return total;
+    },
+    AddProvider(index) {
+      this.estates[index].providers.push({ name: "" });
+    },
+    DeleteProvider(index) {
+      this.estates[index].providers.pop({ name: "" });
     }
   }
 };

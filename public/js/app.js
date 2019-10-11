@@ -2077,6 +2077,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2089,7 +2111,10 @@ __webpack_require__.r(__webpack_exports__);
       estates: [{
         title: "",
         percentage: "",
-        image: ""
+        image: "",
+        providers: [{
+          name: ""
+        }]
       }]
     };
   },
@@ -2114,7 +2139,10 @@ __webpack_require__.r(__webpack_exports__);
         this.estates.push({
           title: "",
           percentage: "",
-          image: ""
+          image: "",
+          providers: [{
+            name: ""
+          }]
         });
       }
     },
@@ -2122,7 +2150,10 @@ __webpack_require__.r(__webpack_exports__);
       this.estates.pop({
         title: "",
         percentage: "",
-        image: ""
+        image: "",
+        providers: [{
+          name: ""
+        }]
       });
     },
     calculatePercentage: function calculatePercentage() {
@@ -2133,6 +2164,16 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       return total;
+    },
+    AddProvider: function AddProvider(index) {
+      this.estates[index].providers.push({
+        name: ""
+      });
+    },
+    DeleteProvider: function DeleteProvider(index) {
+      this.estates[index].providers.pop({
+        name: ""
+      });
     }
   }
 });
@@ -41076,7 +41117,69 @@ var render = function() {
                     return _vm.onChange(field, index)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _vm._l(field.providers, function(provider, i) {
+                    return _c("div", { key: i }, [
+                      _c("div", { staticClass: "input-div" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: provider.name,
+                              expression: "provider.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { placeholder: "Nombre del proveedor" },
+                          domProps: { value: provider.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(provider, "name", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "group-buttons" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.AddProvider(index)
+                          }
+                        }
+                      },
+                      [_vm._v("Nuevo proveedor")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.DeleteProvider(index)
+                          }
+                        }
+                      },
+                      [_vm._v("Eliminar proveedor")]
+                    )
+                  ])
+                ],
+                2
+              )
             ],
             1
           )
@@ -41094,41 +41197,39 @@ var render = function() {
             { staticClass: "btn btn-danger", on: { click: _vm.DeleteField } },
             [_vm._v("Eliminar inmueble")]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.calculatePercentage() == 100
+          ? _c(
+              "div",
+              { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+              [
+                _c("span", [_vm._v("La suma es 100")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "register-codom" }, [
+                  this.codom_name && this.reserve_amount
+                    ? _c("button", { staticClass: "btn btn-success" }, [
+                        _vm._v("Registrar Condominio")
+                      ])
+                    : _vm._e()
+                ])
+              ]
+            )
+          : _c(
+              "div",
+              { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+              [
+                _c("span", [
+                  _vm._v(
+                    "La sumatoria de los porcentajes debe dar 100 : Total de la suma " +
+                      _vm._s(this.calculatePercentage())
+                  )
+                ])
+              ]
+            )
       ],
       2
     ),
-    _vm._v(" "),
-    _c("div", [
-      _vm.calculatePercentage() == 100
-        ? _c(
-            "div",
-            { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-            [
-              _c("span", [_vm._v("La suma es 100")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "register-codom" }, [
-                this.codom_name && this.reserve_amount
-                  ? _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v("Registrar Condominio")
-                    ])
-                  : _vm._e()
-              ])
-            ]
-          )
-        : _c(
-            "div",
-            { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-            [
-              _c("span", [
-                _vm._v(
-                  "La sumatoria de los porcentajes debe dar 100 : Total de la suma " +
-                    _vm._s(this.calculatePercentage())
-                )
-              ])
-            ]
-          )
-    ]),
     _vm._v(" "),
     _c("pre", { staticStyle: { "margin-top": "2em" } }, [
       _vm._v(_vm._s(_vm.$data))
@@ -54394,8 +54495,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\virtual_hosts\codomsystem\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\virtual_hosts\codomsystem\resources\sass\global.scss */"./resources/sass/global.scss");
+__webpack_require__(/*! C:\laragon\www\codom\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\codom\resources\sass\global.scss */"./resources/sass/global.scss");
 
 
 /***/ })
