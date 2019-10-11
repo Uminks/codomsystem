@@ -15,6 +15,8 @@ class CreateItemRecibosTable extends Migration
     {
         Schema::create('item_recibos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_recibo');
+            $table->foreign('id_recibo')->references('id')->on('recibos');            
             $table->timestamps();
         });
     }

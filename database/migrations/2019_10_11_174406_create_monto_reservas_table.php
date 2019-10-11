@@ -15,6 +15,8 @@ class CreateMontoReservasTable extends Migration
     {
         Schema::create('monto_reservas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_condominio');
+            $table->foreign('id_condominio')->references('id')->on('condominios');
             $table->timestamps();
         });
     }

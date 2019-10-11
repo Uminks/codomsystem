@@ -15,7 +15,11 @@ class CreateRecibosTable extends Migration
     {
         Schema::create('recibos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('id_inmueble');
+            $table->foreign('id_inmueble')->references('id')->on('inmuebles');
+            $table->date('fecha_emision');
+            $table->date('fecha_vencimiento');
+            $table->boolean('status');
         });
     }
 

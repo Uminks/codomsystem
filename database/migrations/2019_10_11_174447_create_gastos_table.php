@@ -15,6 +15,9 @@ class CreateGastosTable extends Migration
     {
         Schema::create('gastos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_condominio');
+            $table->foreign('id_condominio')->references('id')->on('condominios');
+            $table->date('fecha_corte');
             $table->timestamps();
         });
     }

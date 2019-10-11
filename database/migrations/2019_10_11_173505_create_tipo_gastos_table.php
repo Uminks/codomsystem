@@ -15,6 +15,7 @@ class CreateTipoGastosTable extends Migration
     {
         Schema::create('tipo_gastos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }

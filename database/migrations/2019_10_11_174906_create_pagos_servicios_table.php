@@ -15,6 +15,11 @@ class CreatePagosServiciosTable extends Migration
     {
         Schema::create('pagos_servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_condomonio');
+            $table->foreign('id_condomonio')->references('id')->on('condominios');
+            $table->unsignedBigInteger('id_item_gasto');
+            $table->foreign('id_item_gasto')->references('id')->on('item_gastos');
+            $table->float('monto');
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_tipo');
+            $table->foreign('id_tipo')->references('id')->on('tipo_usuarios');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ class CreatePagosInmueblesTable extends Migration
     {
         Schema::create('pagos_inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_recibo');
+            $table->foreign('id_recibo')->references('id')->on('recibos');
+            $table->unsignedBigInteger('id_tipo_pagos');
+            $table->foreign('id_tipo_pagos')->references('id')->on('tipo_pagos');
             $table->timestamps();
         });
     }
