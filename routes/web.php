@@ -20,5 +20,3 @@ Route::get('/preview', 'RenderController@generatePDF');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::post('/proveedor')->name('proveedor');
