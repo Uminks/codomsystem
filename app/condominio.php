@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class condominio extends Model
+class Condominio extends Model
 {
-    //
+    protected $fillable = ['nombre'];
 }

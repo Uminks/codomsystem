@@ -22,3 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 
+// CRUD
+
+Route::get('/crud', 'CondominioController@getComdominios');
+Route::post('/crud', 'CondominioController@create');
+

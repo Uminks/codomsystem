@@ -1914,6 +1914,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1992,6 +1993,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_picture_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-picture-input */ "./node_modules/vue-picture-input/PictureInput.vue");
+//
+//
 //
 //
 //
@@ -41125,6 +41128,10 @@ var render = function() {
               ])
             ]
           )
+    ]),
+    _vm._v(" "),
+    _c("pre", { staticStyle: { "margin-top": "2em" } }, [
+      _vm._v(_vm._s(_vm.$data))
     ])
   ])
 }

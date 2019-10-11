@@ -50,6 +50,7 @@
 
     <pre style="margin-top: 2em;">{{ $data }}</pre>
   </div>
+  
 </template>
 
 <script>

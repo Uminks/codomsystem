@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class inmueble extends Model
+class Inmueble extends Model
 {
-    //
+    protected $fillable = ['id', 'id_condominio', 'alicuota'];
+
 }

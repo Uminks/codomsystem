@@ -21,7 +21,12 @@
 
         <div class="container">
 
+            <payment-register></payment-register>
+            <charge-register></charge-register>
+            <codom-register></codom-register>
+            <charge-register></charge-register>
 
+        <!--
         <badger-accordion>
 
             <badger-accordion-item>
@@ -34,10 +39,10 @@
                 <template slot="content"><expense-register></expense-register></template>  
             </badger-accordion-item>
         </badger-accordion>
-            <!-- -->
+             -->
             <!-- <payment-register></payment-register> -->
             <!-- <charge-register></charge-register> -->
-        </div>
+        </div> 
 
 
 

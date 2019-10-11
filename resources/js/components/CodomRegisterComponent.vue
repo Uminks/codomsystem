@@ -53,6 +53,8 @@
                     drag: 'Arrastra la foto😺'
                   }"
         ></picture-input>
+
+
       </div>
       <div class="group-buttons">
         <button class="btn btn-primary" @click="AddField">Nuevo inmueble</button>
@@ -76,7 +78,7 @@
       </div>
     </div>
 
-    <!-- <pre style="margin-top: 2em;">{{ $data }}</pre> -->
+    <pre style="margin-top: 2em;">{{ $data }}</pre>
   </div>
 </template>
 
