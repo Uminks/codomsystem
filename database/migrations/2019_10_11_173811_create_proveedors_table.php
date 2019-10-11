@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoInmueblesTable extends Migration
+class CreateProveedorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTipoInmueblesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_inmuebles', function (Blueprint $table) {
+        Schema::create('proveedors', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->string('descripcion');
-            $table->float('alicuota');
-
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateTipoInmueblesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_inmuebles');
+        Schema::dropIfExists('proveedors');
     }
 }

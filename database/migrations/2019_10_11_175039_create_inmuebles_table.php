@@ -15,17 +15,7 @@ class CreateInmueblesTable extends Migration
     {
         Schema::create('inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->string('nombre');
-            $table->unsignedBigInteger('id_tipo_inmueble');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('id_condominio');
-
             $table->timestamps();
-
-            $table->foreign('id_tipo_inmueble')->references('id')->on('tipo_inmuebles');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('id_condominio')->references('id')->on('condominios');
         });
     }
 

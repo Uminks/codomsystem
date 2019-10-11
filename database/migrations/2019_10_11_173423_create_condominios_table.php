@@ -15,16 +15,7 @@ class CreateCondominiosTable extends Migration
     {
         Schema::create('condominios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('direccion');
-
-            $table->unsignedBigInteger('id_monto_reserva');
-            $table->unsignedBigInteger('user_id');
-
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('id_monto_reserva')->references('id')->on('monto_reservas');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReciboCondominiosTable extends Migration
+class CreatePagosServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateReciboCondominiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('recibo_condominios', function (Blueprint $table) {
+        Schema::create('pagos_servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('monto');
-
-            $table->unsignedBigInteger('id_condominio');
-
             $table->timestamps();
-
-            $table->foreign('id_condominio')->references('id')->on('condominios');
         });
     }
 
@@ -32,6 +26,6 @@ class CreateReciboCondominiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recibo_condominios');
+        Schema::dropIfExists('pagos_servicios');
     }
 }

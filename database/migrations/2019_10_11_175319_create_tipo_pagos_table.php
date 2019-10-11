@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMontoReservasTable extends Migration
+class CreateTipoPagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateMontoReservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('monto_reservas', function (Blueprint $table) {
+        Schema::create('tipo_pagos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('monto');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateMontoReservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monto_reservas');
+        Schema::dropIfExists('tipo_pagos');
     }
 }
