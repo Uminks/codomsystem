@@ -20,10 +20,25 @@
 @section('content')
 
         <div class="container">
-            <codom-register></codom-register> 
-            <!-- <expense-register></expense-register> -->
+
+
+        <badger-accordion>
+
+            <badger-accordion-item>
+                <template slot="header"><h2 class="title-accordeon">Registrar Condominio</h2></template>    
+                <template slot="content"><codom-register></codom-register></template>  
+            </badger-accordion-item>
+        
+            <badger-accordion-item>
+                <template slot="header"><h2 class="title-accordeon">Registro de gastos</h2></template>    
+                <template slot="content"><expense-register></expense-register></template>  
+            </badger-accordion-item>
+        </badger-accordion>
+            <!-- -->
             <!-- <payment-register></payment-register> -->
             <!-- <charge-register></charge-register> -->
         </div>
+
+
 
 @endsection

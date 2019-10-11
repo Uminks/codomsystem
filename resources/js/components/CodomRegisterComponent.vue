@@ -35,8 +35,24 @@
         :key="index"
         v-for="(field, index) in estates"
       >
-        <input class="form-control" v-model="field.title" placeholder="Titulo del inmueble" />
-        <input class="form-control" v-model="field.percentage" placeholder="Porcentaje alicuota" />
+        <div class="input-div">
+          <input class="form-control" v-model="field.title" placeholder="Titulo del inmueble" />
+          <input class="form-control" v-model="field.percentage" placeholder="Porcentaje alicuota" />
+        </div>
+        <picture-input
+          ref="pictureInput"
+          @change="onChange(field,index)"
+          width="200"
+          height="200"
+          margin="16"
+          accept="image/jpeg, image/png"
+          size="4"
+          buttonClass="btn"
+          :customStrings="{
+                    upload: '<h1>Foto del inmueble</h1>',
+                    drag: 'Arrastra la foto😺'
+                  }"
+        ></picture-input>
       </div>
       <div class="group-buttons">
         <button class="btn btn-primary" @click="AddField">Nuevo inmueble</button>
@@ -60,21 +76,33 @@
       </div>
     </div>
 
-    <pre style="margin-top: 2em;">{{ $data }}</pre>
+    <!-- <pre style="margin-top: 2em;">{{ $data }}</pre> -->
   </div>
 </template>
 
 <script>
+import PictureInput from "vue-picture-input";
+
 export default {
+  components: {
+    PictureInput
+  },
   data() {
     return {
       codom_name: null,
       reserve_amount: null,
-      estates: [{ title: "", percentage: "" }]
+      estates: [{ title: "", percentage: "", image: "" }]
     };
   },
   mounted() {},
   methods: {
+    onChange(field, index) {
+      if (this.$refs.pictureInput[index].image) {
+        field.image = this.$refs.pictureInput[index].image;
+      } else {
+        console.log("FileReader API not supported: use the <form>, Luke!");
+      }
+    },
     AddField() {
       let exist = true;
 
@@ -85,11 +113,11 @@ export default {
       });
 
       if (exist) {
-        this.estates.push({ title: "", percentage: "" });
+        this.estates.push({ title: "", percentage: "", image: "" });
       }
     },
     DeleteField() {
-      this.estates.pop({ title: "", percentage: "" });
+      this.estates.pop({ title: "", percentage: "", image: "" });
     },
     calculatePercentage() {
       let total = 0;
@@ -110,6 +138,10 @@ export default {
   margin: auto;
   padding: 5px;
 
+  .input-div {
+    width: 100%;
+  }
+
   &__estates {
     margin-bottom: 8px;
     text-align: center;
@@ -118,6 +150,8 @@ export default {
 
     input {
       margin-right: 10px;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
     }
   }
 

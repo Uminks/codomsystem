@@ -97,3 +97,24 @@ body {
         opacity: 0.85;
     }
 }
+
+.title-accordeon {
+    font-size: 24px;
+    font-family: 'raleway';
+    font-weight: 400;
+}
+
+.component-badger-accordion.badger-accordion--initialized {
+    background: #fff !important;
+    padding: 20px !important;
+    box-shadow: 5px 5px 10px 0px #ccc !important;
+}
+
+.badger-accordion__header {
+    margin: 1em 0 !important;
+    padding: 15px !important;
+}
+
+.badger-accordion__header:hover {
+    background: rgba(5, 5, 5, 0.025) !important;
+}
