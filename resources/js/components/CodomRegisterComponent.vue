@@ -98,7 +98,7 @@
           <button
             v-if="this.codom_name && this.reserve_amount"
             class="btn btn-success"
-            @click="registerCodom"
+            @click="registerCodom($data)"
           >Registrar Condominio</button>
         </div>
       </div>
@@ -167,10 +167,10 @@ export default {
     DeleteProvider() {
       this.providers.pop({ name: "" });
     },
-    registerCodom() {
-      let url = "";
+    registerCodom(data) {
+      let url = "/condominios";
       axios
-        .post(url)
+        .post(url, data)
         .then(response => {
           console.log('success')
         }).catch(err => {

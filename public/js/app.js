@@ -2185,9 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
         name: ""
       });
     },
-    registerCodom: function registerCodom() {
-      var url = "";
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url).then(function (response) {
+    registerCodom: function registerCodom(data) {
+      var url = "/condominios";
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url, data).then(function (response) {
         console.log('success');
       })["catch"](function (err) {});
     }
@@ -41232,7 +41232,11 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          on: { click: _vm.registerCodom }
+                          on: {
+                            click: function($event) {
+                              return _vm.registerCodom(_vm.$data)
+                            }
+                          }
                         },
                         [_vm._v("Registrar Condominio")]
                       )
