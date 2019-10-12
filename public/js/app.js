@@ -54524,8 +54524,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\virtual_hosts\codomsystem\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\virtual_hosts\codomsystem\resources\sass\global.scss */"./resources/sass/global.scss");
+__webpack_require__(/*! C:\laragon\www\codom\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\codom\resources\sass\global.scss */"./resources/sass/global.scss");
 
 
 /***/ })
