@@ -2238,6 +2238,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2288,27 +2290,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user_id'],
   data: function data() {
     return {
+      codoms: [],
+      estates: [],
+      codom_id: null,
+      estate_id: null,
+      date: null,
+      expenses: [{
+        type: null,
+        info: null,
+        value: null
+      }],
       options: {
         1: "Transaccion Ordinaria",
         2: "Transaccion Extraordinaria",
         3: "Transaccion Individual",
         4: "Previsiones",
         5: "Coutas Extras"
-      },
-      estate_name: null,
-      date: null,
-      expenses: [{
-        type: null,
-        info: null,
-        value: null
-      }]
+      }
     };
   },
   mounted: function mounted() {
-    datePicker.max = new Date().toISOString().split("T")[0];
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/condominios').then(function (response) {
+      _this.codoms = response.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
   },
   methods: {
     AddField: function AddField() {
@@ -2326,6 +2380,15 @@ __webpack_require__.r(__webpack_exports__);
           value: null
         });
       }
+    },
+    updateEstates: function updateEstates() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/condominios/' + this.codom_id).then(function (response) {
+        _this2.estates = response.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
     },
     setInfo: function setInfo(field, type) {
       field.info = this.options[field.type];
@@ -41338,35 +41401,102 @@ var render = function() {
     _c("h2", [_vm._v("Registro de gastos del mes")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "estate_name" } }, [
-        _vm._v("Nombre del inmueble")
-      ]),
+      _c("label", { attrs: { for: "estate_name" } }, [_vm._v("Condominio")]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.estate_name,
-            expression: "estate_name"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "estate_name",
-          placeholder: "Nombre del inmueble"
-        },
-        domProps: { value: _vm.estate_name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.codom_id,
+              expression: "codom_id"
             }
-            _vm.estate_name = $event.target.value
+          ],
+          staticClass: "form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.codom_id = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.updateEstates
+            ]
           }
-        }
-      })
+        },
+        [
+          _c(
+            "option",
+            { attrs: { value: "null", disabled: "", selected: "" } },
+            [_vm._v("Seleccione inmueble")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.codoms, function(codom, key) {
+            return _c("option", { key: key, domProps: { value: codom.id } }, [
+              _vm._v(_vm._s(codom.nombre))
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "estate_name" } }, [_vm._v("Inmueble")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.estate_id,
+              expression: "estate_id"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.estate_id = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c(
+            "option",
+            { attrs: { value: "null", disabled: "", selected: "" } },
+            [_vm._v("Seleccione inmueble")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.estates, function(estate, key) {
+            return _c("option", { key: key, domProps: { value: estate.id } }, [
+              _vm._v(_vm._s(estate.nombre))
+            ])
+          })
+        ],
+        2
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
@@ -41454,7 +41584,7 @@ var render = function() {
                   _c(
                     "option",
                     { attrs: { value: "null", disabled: "", selected: "" } },
-                    [_vm._v("Tipo de gasto")]
+                    [_vm._v("Proveedor")]
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.options, function(option, key) {

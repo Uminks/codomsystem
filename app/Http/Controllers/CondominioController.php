@@ -21,14 +21,14 @@ class CondominioController extends Controller
         $user_id = Auth::user()->id;
         $data = User::getCondominios($user_id);
 
-        return view('crud',compact('data'));
+        return $data;
     }
     
 
     public function getInmuebles ($id) {
         $data = Condominio::inmuebles ($id); 
 
-        return view ('crud', compact('data'));
+        return $data;
     }
 
     /**

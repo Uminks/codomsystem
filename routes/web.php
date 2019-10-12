@@ -19,6 +19,8 @@ Route::get('/preview', 'RenderController@generatePDF');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/gastos', 'RenderController@getGastos');
+
 Auth::routes();
 
 

@@ -2,16 +2,22 @@
   <div class="estates-container">
     <h2>Registro de gastos del mes</h2>
 
+
     <div class="form-group">
-      <label for="estate_name">Nombre del inmueble</label>
-      <input
-        v-model="estate_name"
-        type="text"
-        name="estate_name"
-        class="form-control"
-        placeholder="Nombre del inmueble"
-      />
-    </div>
+      <label for="estate_name">Condominio</label>
+      <select @change="updateEstates" v-model="codom_id" class="form-control">
+        <option value="null" disabled selected>Seleccione inmueble</option>
+        <option v-for="(codom, key) in this.codoms" :value="codom.id" :key="key">{{ codom.nombre }}</option>
+      </select>
+    </div> 
+
+    <div class="form-group">
+      <label for="estate_name">Inmueble</label>
+      <select v-model="estate_id" class="form-control">
+        <option value="null" disabled selected>Seleccione inmueble</option>
+        <option v-for="(estate, key) in this.estates" :value="estate.id" :key="key">{{ estate.nombre }}</option>
+      </select>
+    </div> 
 
     <div class="form-group">
       <label for="codom_name">Mes del registro</label>
@@ -27,8 +33,9 @@
         :key="index"
         v-for="(field, index) in expenses"
       >
+
         <select @change="setInfo(field, field.type)" v-model="field.type" class="form-control">
-          <option value="null" disabled selected>Tipo de gasto</option>
+          <option value="null" disabled selected>Proveedor</option>
           <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
         </select>
 
@@ -40,26 +47,59 @@
       </div>
     </div>
 
+
+
+      <!--
+        <div :key="i" v-for="(estate, i) in this.estates">
+        
+          <div class="input-div">
+            <input class="form-control" v-model="provider.name" placeholder="Nombre del proveedor" />
+          </div>
+          
+        </div>
+        <div class="group-buttons">
+          <button class="btn btn-primary" @click="AddProvider()">Nuevo proveedor</button>
+          <button class="btn btn-danger" @click="DeleteProvider()">Eliminar proveedor</button>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>Gastos</label>
+      <div
+        class="estates-container__estates form-group"
+        :key="index"
+        v-for="(field, index) in expenses"
+      >
+        <select @change="setInfo(field, field.type)" v-model="field.type" class="form-control">
+          <option value="null" disabled selected>Tipo de gasto</option>
+          <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
+        </select>
+
+        <input class="form-control" v-model="field.value" placeholder="Valor" />
+      </div>
+>-->
+  
+
     <div class="text-center" v-if="allValuesExist() && this.estate_name && this.date">
       <button class="btn btn-success">Registrar Gastos</button>
-    </div>
+    </div> 
 
     <pre style="margin-top: 2em;">{{ $data }}</pre>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  props : ['user_id'],
   data() {
     return {
-      options: {
-        1: "Transaccion Ordinaria",
-        2: "Transaccion Extraordinaria",
-        3: "Transaccion Individual",
-        4: "Previsiones",
-        5: "Coutas Extras"
-      },
-      estate_name: null,
+      codoms : [],
+      estates : [],
+      codom_id: null,
+      estate_id: null,
       date: null,
       expenses: [
         {
@@ -67,11 +107,25 @@ export default {
           info: null,
           value: null
         }
-      ]
+      ],
+      options : {
+        1: "Transaccion Ordinaria",
+        2: "Transaccion Extraordinaria",
+        3: "Transaccion Individual",
+        4: "Previsiones",
+        5: "Coutas Extras"
+      }
     };
   },
   mounted() {
-    datePicker.max = new Date().toISOString().split("T")[0];
+    axios
+    .get('/condominios')
+    .then(response => {
+      this.codoms = response.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   },
   methods: {
     AddField() {
@@ -90,6 +144,17 @@ export default {
           value: null
         });
       }
+    },
+    updateEstates() {
+        axios
+        .get('/condominios/'+this.codom_id)
+        .then(response => {
+          this.estates = response.data
+
+        })
+        .catch(err => {
+          console.log(err)
+        });
     },
     setInfo(field, type) {
       field.info = this.options[field.type];
