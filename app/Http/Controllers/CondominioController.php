@@ -39,7 +39,7 @@ class CondominioController extends Controller
     public function getProveedores ($id) {
         $data = Condominio::proveedores ($id); 
 
-        return view ('crud', compact('data'));
+        return $data;
     }
 
     /**
@@ -81,7 +81,8 @@ class CondominioController extends Controller
         
         foreach ( $data["providers"] as $proveedor ){
             Proveedor::create([
-                "descripcion" => $proveedor["name"]
+                "descripcion" => $proveedor["name"],
+                "id_condominio" => $condominio->id
             ]);
         }
         

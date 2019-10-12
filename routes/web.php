@@ -28,5 +28,6 @@ Auth::routes();
 
 Route::GET('/condominios', 'CondominioController@getComdominios');
 Route::GET('/condominios/{id}', 'CondominioController@getInmuebles');
+Route::GET('/proveedores/{id}', 'CondominioController@getProveedores');
 Route::POST('/condominios', 'CondominioController@create');
 

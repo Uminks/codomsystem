@@ -2297,40 +2297,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
@@ -2338,21 +2304,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       codoms: [],
       estates: [],
+      providers: [],
       codom_id: null,
       estate_id: null,
       date: null,
       expenses: [{
-        type: null,
+        provider_id: null,
         info: null,
         value: null
-      }],
-      options: {
-        1: "Transaccion Ordinaria",
-        2: "Transaccion Extraordinaria",
-        3: "Transaccion Individual",
-        4: "Previsiones",
-        5: "Coutas Extras"
-      }
+      }]
     };
   },
   mounted: function mounted() {
@@ -2368,14 +2328,14 @@ __webpack_require__.r(__webpack_exports__);
     AddField: function AddField() {
       var exist = true;
       this.expenses.forEach(function (field) {
-        if (field.type == null || field.value == null) {
+        if (field.provider_id == null || field.value == null) {
           exist = false;
         }
       });
 
       if (exist) {
         this.expenses.push({
-          type: null,
+          provider_id: null,
           info: null,
           value: null
         });
@@ -2384,19 +2344,34 @@ __webpack_require__.r(__webpack_exports__);
     updateEstates: function updateEstates() {
       var _this2 = this;
 
+      // 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/condominios/' + this.codom_id).then(function (response) {
         _this2.estates = response.data;
+
+        _this2.getProviders();
+
+        console.log(_this2.estates);
+      })["catch"](function (err) {
+        console.log(err);
+      }); //
+    },
+    getProviders: function getProviders() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/proveedores/' + this.codom_id).then(function (response) {
+        _this3.providers = response.data;
+        console.log(_this3.providers);
       })["catch"](function (err) {
         console.log(err);
       });
     },
     setInfo: function setInfo(field, type) {
-      field.info = this.options[field.type];
+      field.info = this.providers[type].descripcion;
     },
     allValuesExist: function allValuesExist() {
       var isOk = true;
       this.expenses.forEach(function (extense) {
-        if (extense.type == null || extense.info == null || extense.value == null) {
+        if (extense.provider_id == null || extense.info == null || extense.value == null) {
           isOk = false;
         }
       });
@@ -2404,9 +2379,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     DeleteField: function DeleteField() {
       this.expenses.pop({
-        type: null,
+        provider_id: null,
         info: null,
         value: null
+      });
+    },
+    registerExpense: function registerExpense(data) {
+      data = {
+        codom_id: data.codom_id,
+        estate_id: data.estate_id,
+        date: data.date,
+        expenses: data.expenses
+      };
+      console.log(data);
+      var url = "/";
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data).then(function (response) {
+        alert('sucess');
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   }
@@ -41550,8 +41540,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: field.type,
-                      expression: "field.type"
+                      value: field.provider_id,
+                      expression: "field.provider_id"
                     }
                   ],
                   staticClass: "form-control",
@@ -41568,14 +41558,14 @@ var render = function() {
                           })
                         _vm.$set(
                           field,
-                          "type",
+                          "provider_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         )
                       },
                       function($event) {
-                        return _vm.setInfo(field, field.type)
+                        return _vm.setInfo(field, field.provider_id)
                       }
                     ]
                   }
@@ -41587,11 +41577,11 @@ var render = function() {
                     [_vm._v("Proveedor")]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.options, function(option, key) {
+                  _vm._l(_vm.providers, function(option, key) {
                     return _c(
                       "option",
-                      { key: key, domProps: { value: key } },
-                      [_vm._v(_vm._s(option))]
+                      { key: key, domProps: { value: option.id } },
+                      [_vm._v(_vm._s(option.descripcion))]
                     )
                   })
                 ],
@@ -41640,13 +41630,20 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _vm.allValuesExist() && this.estate_name && this.date
-      ? _c("div", { staticClass: "text-center" }, [
-          _c("button", { staticClass: "btn btn-success" }, [
-            _vm._v("Registrar Gastos")
-          ])
-        ])
-      : _vm._e(),
+    _c("div", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          on: {
+            click: function($event) {
+              return _vm.registerExpense(_vm.$data)
+            }
+          }
+        },
+        [_vm._v("Registrar Gastos")]
+      )
+    ]),
     _vm._v(" "),
     _c("pre", { staticStyle: { "margin-top": "2em" } }, [
       _vm._v(_vm._s(_vm.$data))

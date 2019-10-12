@@ -34,9 +34,9 @@
         v-for="(field, index) in expenses"
       >
 
-        <select @change="setInfo(field, field.type)" v-model="field.type" class="form-control">
+        <select @change="setInfo(field, field.provider_id)" v-model="field.provider_id" class="form-control">
           <option value="null" disabled selected>Proveedor</option>
-          <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
+          <option v-for="(option, key) in providers" :value="option.id" :key="key">{{ option.descripcion }}</option>
         </select>
 
         <input class="form-control" v-model="field.value" placeholder="Valor" />
@@ -47,42 +47,8 @@
       </div>
     </div>
 
-
-
-      <!--
-        <div :key="i" v-for="(estate, i) in this.estates">
-        
-          <div class="input-div">
-            <input class="form-control" v-model="provider.name" placeholder="Nombre del proveedor" />
-          </div>
-          
-        </div>
-        <div class="group-buttons">
-          <button class="btn btn-primary" @click="AddProvider()">Nuevo proveedor</button>
-          <button class="btn btn-danger" @click="DeleteProvider()">Eliminar proveedor</button>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-      <label>Gastos</label>
-      <div
-        class="estates-container__estates form-group"
-        :key="index"
-        v-for="(field, index) in expenses"
-      >
-        <select @change="setInfo(field, field.type)" v-model="field.type" class="form-control">
-          <option value="null" disabled selected>Tipo de gasto</option>
-          <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
-        </select>
-
-        <input class="form-control" v-model="field.value" placeholder="Valor" />
-      </div>
->-->
-  
-
-    <div class="text-center" v-if="allValuesExist() && this.estate_name && this.date">
-      <button class="btn btn-success">Registrar Gastos</button>
+    <div class="text-center">
+      <button @click="registerExpense($data)" class="btn btn-success">Registrar Gastos</button>
     </div> 
 
     <pre style="margin-top: 2em;">{{ $data }}</pre>
@@ -98,23 +64,17 @@ export default {
     return {
       codoms : [],
       estates : [],
+      providers : [],
       codom_id: null,
       estate_id: null,
       date: null,
       expenses: [
         {
-          type: null,
+          provider_id: null,
           info: null,
           value: null
         }
-      ],
-      options : {
-        1: "Transaccion Ordinaria",
-        2: "Transaccion Extraordinaria",
-        3: "Transaccion Individual",
-        4: "Previsiones",
-        5: "Coutas Extras"
-      }
+      ]
     };
   },
   mounted() {
@@ -132,39 +92,56 @@ export default {
       let exist = true;
 
       this.expenses.forEach(field => {
-        if (field.type == null || field.value == null) {
+        if (field.provider_id == null || field.value == null) {
           exist = false;
         }
       });
 
       if (exist) {
         this.expenses.push({
-          type: null,
+          provider_id: null,
           info: null,
           value: null
         });
       }
     },
     updateEstates() {
+
+        // 
         axios
         .get('/condominios/'+this.codom_id)
         .then(response => {
           this.estates = response.data
+          this.getProviders()
+          console.log(this.estates)
+        })
+        .catch(err => {
+          console.log(err)
+        });
+        
+        //
 
+    },
+    getProviders() {
+        axios
+        .get('/proveedores/'+this.codom_id)
+        .then(response => {
+          this.providers = response.data
+          console.log(this.providers)
         })
         .catch(err => {
           console.log(err)
         });
     },
     setInfo(field, type) {
-      field.info = this.options[field.type];
+      field.info = this.providers[type].descripcion;
     },
     allValuesExist() {
       let isOk = true;
 
       this.expenses.forEach(extense => {
         if (
-          extense.type == null ||
+          extense.provider_id == null ||
           extense.info == null ||
           extense.value == null
         ) {
@@ -176,10 +153,28 @@ export default {
     },
     DeleteField() {
       this.expenses.pop({
-        type: null,
+        provider_id: null,
         info: null,
         value: null
       });
+    },
+    registerExpense(data) {
+
+      data = {
+        codom_id: data.codom_id,
+        estate_id: data.estate_id,
+        date: data.date,
+        expenses : data.expenses
+      }
+      console.log(data);
+      let url = "/";
+      axios
+        .post(url, data)
+        .then(response => {
+          alert('sucess');
+        }).catch(err => {
+          console.log(err);
+        });
     }
   }
 };
