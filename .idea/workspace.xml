@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="634e78c1-4754-455b-aba0-67c9d0f82d11" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CondominioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CondominioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/inmueble.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/inmueble.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +221,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="1295" />
     <option name="height" value="1047" />
@@ -333,7 +334,7 @@
     <option name="totallyTimeSpent" value="4237000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
