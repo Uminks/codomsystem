@@ -12,8 +12,6 @@ use App\Monto_Reserva;
 use App\Proveedor;
 use App\User;
 use \Auth;
-use Illuminate\Support\Facades\Input;
-use Image;
 
 class CondominioController extends Controller
 {
@@ -52,9 +50,12 @@ class CondominioController extends Controller
 
         //Crear Inmueble
         foreach ( $data["estates"] as $inmueble ) {
-            echo $inmueble["image"];
+            $percent = (float) $inmueble["percentage"];
+            $title = (string) $inmueble["title"];
+
             $inmueble = new Inmueble();
-            $inmueble->alicuota = (float) $inmueble["percentage"];
+            $inmueble->alicuota = $percent;
+            $inmueble->nombre = $title;
 
             $image = substr($data["estates"][0]["image"], strpos($data["estates"][0]["image"], ",")+1);;  // your base64 encoded
             $image = str_replace('data:image/png;base64,', '', $image);

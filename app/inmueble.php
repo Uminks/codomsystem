@@ -7,6 +7,6 @@ use App\Condominio;
 
 class Inmueble extends Model
 {
-    protected $fillable = ['id', 'id_condominio', 'alicuota', 'imagen'];
+    protected $fillable = ['id', 'id_condominio', 'alicuota', 'imagen', 'nombre'];
 
 }
