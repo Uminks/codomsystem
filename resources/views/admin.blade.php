@@ -5,15 +5,7 @@
 @endpush
 
 @push('styles')
-    <style>
-        .footer {
-            background-color: #eee;
-            text-align: center;
-            padding: 15px;
-            font-weight: 400;
-            color: #444;
-        }
-    </style>
+
 @endpush
 
 

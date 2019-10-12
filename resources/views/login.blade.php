@@ -26,25 +26,6 @@
                 <h1> CODOMSystem </h1>
             </div>
 
-            <div class="row">
-
-                <div class="col text-center access-container">
-                    
-                    <a  href="#user-access" data-toggle="modal" data-target="#user-access">
-                        <img src="{{asset('assets/svg/admin-icon.svg')}}">
-                        <h2> Acceso Administrador </h2>
-                    </a>
-
-                </div>
-                <div class="col text-center access-container">
-
-                    <a href="#admin-access" data-toggle="modal" data-target="#admin-access">
-                        <img src="{{asset('assets/svg/user-icon.svg')}}">
-                        <h2> Acceso Usuario </h2>
-                    </a>
-
-                </div>
-            </div>
         </div>
     </div> 
 

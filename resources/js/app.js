@@ -27,6 +27,7 @@ Vue.component('codom-register', require('./components/CodomRegisterComponent.vue
 Vue.component('expense-register', require('./components/ExpensesRegisterComponent.vue').default);
 Vue.component('payment-register', require('./components/PaymentRegisterComponent.vue').default);
 Vue.component('charge-register', require('./components/ChargeRegisterComponent.vue').default);
+Vue.component('estates-list', require('./components/EstatesListComponent.vue').default);
 Vue.component('BadgerAccordion', BadgerAccordion);
 Vue.component('BadgerAccordionItem', BadgerAccordionItem);
 
