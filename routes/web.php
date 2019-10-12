@@ -26,4 +26,5 @@ Auth::routes();
 
 Route::get('/crud', 'CondominioController@getComdominios');
 Route::post('/crud', 'CondominioController@create');
+Route::get('/crud2', 'UsuarioController@getInmubles');
 
