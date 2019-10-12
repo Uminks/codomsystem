@@ -10,6 +10,5 @@ use App\Monto_Reserva;
 class UsuarioController extends Controller
 {
 
-     
 
 }

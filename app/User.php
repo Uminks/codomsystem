@@ -2,9 +2,11 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Condomio;
 
 class User extends Authenticatable
 {
@@ -36,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public static function getCondominios ($id) {
+        return Condominio::join('user_condominio', 'condominios.id', '=', 'user_condominio.id_condominio')->where('user_condominio.id_usuario', (int) $id)->get();    
+    }
 }
