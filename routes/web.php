@@ -21,6 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/gastos', 'RenderController@getGastos');
 
+Route::get('/access', 'RenderController@accessView');
+
+Route::get('/registrar-condominio', 'RenderController@registerCodom');
+Route::get('/registrar-gasto', 'RenderController@registerExpenses');
+Route::get('/inmuebles', 'RenderController@estates');
+
 Auth::routes();
 
 

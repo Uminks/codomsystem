@@ -2107,7 +2107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41311,11 +41310,7 @@ var render = function() {
             )
       ],
       2
-    ),
-    _vm._v(" "),
-    _c("pre", { staticStyle: { "margin-top": "2em" } }, [
-      _vm._v(_vm._s(_vm.$data))
-    ])
+    )
   ])
 }
 var staticRenderFns = []
@@ -41643,10 +41638,6 @@ var render = function() {
         },
         [_vm._v("Registrar Gastos")]
       )
-    ]),
-    _vm._v(" "),
-    _c("pre", { staticStyle: { "margin-top": "2em" } }, [
-      _vm._v(_vm._s(_vm.$data))
     ])
   ])
 }

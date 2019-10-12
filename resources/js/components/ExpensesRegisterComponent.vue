@@ -51,7 +51,7 @@
       <button @click="registerExpense($data)" class="btn btn-success">Registrar Gastos</button>
     </div> 
 
-    <pre style="margin-top: 2em;">{{ $data }}</pre>
+   <!--  <pre style="margin-top: 2em;">{{ $data }}</pre> -->
   </div>
 </template>
 
