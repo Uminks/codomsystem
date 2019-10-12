@@ -16,6 +16,11 @@ use \Auth;
 class CondominioController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //Listar Condominios
     public function getComdominios(){
         $user_id = Auth::user()->id;
@@ -27,6 +32,12 @@ class CondominioController extends Controller
 
     public function getInmuebles ($id) {
         $data = Condominio::inmuebles ($id); 
+
+        return view ('crud', compact('data'));
+    }
+
+    public function getProveedores ($id) {
+        $data = Condominio::proveedores ($id); 
 
         return view ('crud', compact('data'));
     }
